@@ -12,15 +12,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		03C63CA7BCDD1A1CE41066F1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		03C63CA7BCDD1A1CE41066F1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		3C6F9F12FC0910D1F43F2AF9 /* Pods_SettingsApiImpl_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SettingsApiImpl_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACE51AFB9204008FA782 /* SettingsApiImpl_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SettingsApiImpl_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		A18B769C04524C504CC984FF /* Pods-SettingsApiImpl_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SettingsApiImpl_Tests.release.xcconfig"; path = "Target Support Files/Pods-SettingsApiImpl_Tests/Pods-SettingsApiImpl_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		BDB7263B2940321BDC42A145 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		BDB7263B2940321BDC42A145 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D561546BFD2D2C4B8B8CBC96 /* Pods-SettingsApiImpl_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SettingsApiImpl_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SettingsApiImpl_Tests/Pods-SettingsApiImpl_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F9571D271E994A9AEF5F912E /* SettingsApiImpl.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SettingsApiImpl.podspec; path = ../SettingsApiImpl.podspec; sourceTree = "<group>"; };
+		F9571D271E994A9AEF5F912E /* SettingsApiImpl.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SettingsApiImpl.podspec; path = ../SettingsApiImpl.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,6 @@
 				D561546BFD2D2C4B8B8CBC96 /* Pods-SettingsApiImpl_Tests.debug.xcconfig */,
 				A18B769C04524C504CC984FF /* Pods-SettingsApiImpl_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -131,10 +130,6 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
-					607FACCF1AFB9204008FA782 = {
-						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0900;
-					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0900;
@@ -147,6 +142,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -202,13 +198,17 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SettingsApiImpl_Tests/Pods-SettingsApiImpl_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/SettingsApi/SettingsApi.framework",
 				"${BUILT_PRODUCTS_DIR}/SettingsApiImpl/SettingsApiImpl.framework",
+				"${BUILT_PRODUCTS_DIR}/TedoooRestApi/TedoooRestApi.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SettingsApi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SettingsApiImpl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooRestApi.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
