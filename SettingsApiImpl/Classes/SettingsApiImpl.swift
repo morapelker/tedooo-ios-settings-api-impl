@@ -16,6 +16,12 @@ public class SettingsApiImpl: SettingsApi {
 //        return Just(NotificationSettings(postNotifications: false)).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     
+    public  func fetchAccountSettings() -> AnyPublisher<AccountSettings, Error> {
+        return api.requestRx(outputType: AccountSettings.self, request: .init(path: "v2/settings/account", withAuth: true))
+            .mapError({_ in NSError(domain: "Could not fetch", code: 1)}).eraseToAnyPublisher()
+//        return Just(AccountSettings(lastSeen: true, localTime: false, liveTranslations: true, language: "English", email: "morapelker@gmail.com")).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+    
     public func launchChangeLanguage(in navController: UINavigationController) {
         print("launch change language")
     }
@@ -28,10 +34,6 @@ public class SettingsApiImpl: SettingsApi {
     public func updateEmail(toEmail: String) -> AnyPublisher<Any?, Error> {
         print("update email", toEmail)
         return Just(nil).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-    
-    public  func fetchAccountSettings() -> AnyPublisher<AccountSettings, Error> {
-        return Just(AccountSettings(lastSeen: true, localTime: false, liveTranslations: true, language: "English", email: "morapelker@gmail.com")).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     
    
