@@ -44,9 +44,14 @@ public class SettingsApiImpl: SettingsApi {
     
    
     public func updatePassword(oldPassword: String, newPassword: String) -> AnyPublisher<Any?, NSError> {
-        print("update password", oldPassword, newPassword)
+        /**["oldPassword": txtCurrentPassword.text ?? "", "password": txtNewPassword.text ?? ""]**/
+        return api.requestRx(request: .init(path: "users/current", withAuth: true, method: .patch), parameters: [
+            "oldPassword": oldPassword,
+            "password": newPassword
+        ]).mapError({_ in NSError(domain: "Could not complete this request", code: 1)}).eraseToAnyPublisher()
+//        print("update password", oldPassword, newPassword)
 //        return Fail(error: NSError(domain: "Invalid password", code: 1)).delay(for: 1.0, scheduler: DispatchQueue.main).eraseToAnyPublisher()
-        return Just(nil).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: NSError.self).eraseToAnyPublisher()
+//        return Just(nil).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: NSError.self).eraseToAnyPublisher()
     }
     
     
