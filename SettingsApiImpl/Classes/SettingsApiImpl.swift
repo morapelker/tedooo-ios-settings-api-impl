@@ -22,9 +22,6 @@ public class SettingsApiImpl: SettingsApi {
 //        return Just(AccountSettings(lastSeen: true, localTime: false, liveTranslations: true, language: "English", email: "morapelker@gmail.com")).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     
-    public func launchChangeLanguage(in navController: UINavigationController) {
-        print("launch change language")
-    }
     
     public func updateAvatar(avatar: String?) -> AnyPublisher<Any?, Error> {
         return api.requestRx(request: .init(path: "users/current", withAuth: true, method: .patch), parameters: [
@@ -56,7 +53,8 @@ public class SettingsApiImpl: SettingsApi {
     
     
     public func deleteAccount() -> AnyPublisher<DeleteAccountResult?, Never> {
-        return Just(DeleteAccountResult(didDelete: false)).delay(for: 1.0, scheduler: DispatchQueue.main).eraseToAnyPublisher()
+        return api.requestRx(outputType: DeleteAccountResult.self, request: .init(path: "v2/users/delete", withAuth: true, method: .delete)).map({ d -> DeleteAccountResult? in return d }).replaceError(with: nil).eraseToAnyPublisher()
+//        return Just(DeleteAccountResult(didDelete: false)).delay(for: 1.0, scheduler: DispatchQueue.main).eraseToAnyPublisher()
 //        return Just(DeleteAccountResult(didDelete: true)).delay(for: 1.0, scheduler: DispatchQueue.main).eraseToAnyPublisher()
 //        return
     }
