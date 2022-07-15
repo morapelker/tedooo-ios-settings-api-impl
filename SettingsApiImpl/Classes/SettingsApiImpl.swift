@@ -50,11 +50,43 @@ public class SettingsApiImpl: SettingsApi {
 //        return
     }
 
+    private struct UpdateSettingRequest: Encodable {
+        
+        let lastSeen: Bool?
+        let localTime: Bool?
+        let liveTranslation: Bool?
+        let postNotifications: Bool?
+        
+        init(
+            lastSeen: Bool? = nil,
+            localTime: Bool? = nil,
+            liveTranslations: Bool? = nil,
+            postNotifications: Bool? = nil
+        ) {
+            self.lastSeen = lastSeen
+            self.localTime = localTime
+            self.liveTranslation = liveTranslations
+            self.postNotifications = postNotifications
+        }
+        
+    }
     
     public  func updateSettingItem(item: SettingItem, newValue: Bool) -> AnyPublisher<Any?, Error> {
-        print("update settings item", item, newValue)
+        let request: UpdateSettingRequest
+        switch item {
+        case .lastSeen:
+            request = .init(lastSeen: newValue)
+        case .liveTranslations:
+            request = .init(liveTranslations: newValue)
+        case .postNotifications:
+            request = .init(postNotifications: newValue)
+        case .localTime:
+            request = .init(localTime: newValue)
+        }
+        return api.requestRx(request: .init(path: "chat", withAuth: true, method: .patch), parameters: request).mapError({_ in NSError(domain: "Setting could not be updated", code: 1)}).eraseToAnyPublisher()
+        
 //        return Fail(error: NSError(domain: "", code: 1)).delay(for: 1.0, scheduler: DispatchQueue.main).eraseToAnyPublisher()
-        return Just(nil).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
+//        return Just(nil).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     
 }
