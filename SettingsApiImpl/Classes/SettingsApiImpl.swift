@@ -1,9 +1,20 @@
 import SettingsApi
 import Combine
+import TedoooRestApi
 
 public class SettingsApiImpl: SettingsApi {
-
-    public init() {}
+    
+    let api: TedoooRestApi.RestApiClient
+    
+    public init(api: TedoooRestApi.RestApiClient) {
+        self.api = api
+    }
+    
+    public func fetchNotificationSettings() -> AnyPublisher<NotificationSettings, Error> {
+        return api.requestRx(outputType: NotificationSettings.self, request: .init(path: "v2/settings/notifications", withAuth: true))
+            .mapError({_ in NSError(domain: "Could not fetch", code: 1)}).eraseToAnyPublisher()
+//        return Just(NotificationSettings(postNotifications: false)).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
     
     public func launchChangeLanguage(in navController: UINavigationController) {
         print("launch change language")
@@ -37,10 +48,6 @@ public class SettingsApiImpl: SettingsApi {
 //        return
     }
 
-    
-    public func fetchNotificationSettings() -> AnyPublisher<NotificationSettings, Error> {
-        return Just(NotificationSettings(postNotifications: false)).delay(for: 1.0, scheduler: DispatchQueue.main).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
     
     public  func updateSettingItem(item: SettingItem, newValue: Bool) -> AnyPublisher<Any?, Error> {
         print("update settings item", item, newValue)
