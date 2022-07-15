@@ -3,7 +3,7 @@ import Combine
 
 public class SettingsApiImpl: SettingsApi {
 
-    
+    public init() {}
     
     public func launchChangeLanguage(in navController: UINavigationController) {
         print("launch change language")
